@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { UIHeader } from "./UI/UIHeader";
-import { UIInput } from "./UI/UIInput";
-import { UITextArea } from "./UI/UITextArea";
-import { UISelect } from "./UI/UISelect";
-import { UIGroupCheckBox } from "./UI/UIGroupCheckBox";
-import { UIGroupRadioButton } from "./UI/UIGroupRadioButton";
-import { UIFile } from "./UI/UIFiles/UIFile";
+import { UIInput } from "./UI/UserInputs/UIInput";
+import { UITextArea } from "./UI/UserInputs/UITextArea";
+import { UISelect } from "./UI/UserInputs/UISelect";
+import { UIGroupCheckBox } from "./UI/UserInputs/UICheckBoxs/UIGroupCheckBox";
+import { UIGroupRadioButton } from "./UI/UserInputs/UIRadioButtons/UIGroupRadioButton";
+import { UIFile } from "./UI/UserInputs/UIFiles/UIFile";
+import { UIButton } from "./UI/UserInputs/UIButton";
 
 const selectValues = [
   { id: 1, name: "Italia", default: false },
@@ -137,16 +138,33 @@ export const Form = () => {
             title="Push Notifications"
             values={UIGroupRadioButtonValues}
             onChange={(event: any) =>
-              setForm({ ...form, notificationPush: parseInt(event.target.value, 0) })
+              setForm({
+                ...form,
+                notificationPush: parseInt(event.target.value, 0),
+              })
             }
           />
           <UIFile
-          id="myFile"
-          label="Add Photo"
-          onFileAdd={(selected: Array<File>) =>
-            setForm({ ...form, files: selected })
-          }
+            id="myFile"
+            label="Add Photo"
+            onFileAdd={(selected: Array<File>) =>
+              setForm({ ...form, files: selected })
+            }
           />
+        </div>
+        <div className="pt-5">
+          <div className="flex justify-end">
+            <UIButton
+              title="Cancel"
+              onClick={() => console.log()}
+              solid={true}
+            />
+            <UIButton
+              title="Save"
+              onClick={() => console.log()}
+              solid={false}
+            />
+          </div>
         </div>
       </form>
       <div className="my-4 bg-blue-800 text-white font-bold text-sm p-4 rounded-md shadow-md">
